@@ -126,8 +126,13 @@ public class Janela extends javax.swing.JDialog {
 
     private void converterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_converterActionPerformed
         // TODO add your handling code here:
-  
-if(boxEntrada.getSelectedIndex()== 1 && boxSaida.getSelectedIndex()==0){
+        DecimalBinario();
+        BinarioDecimal();
+     
+    }//GEN-LAST:event_converterActionPerformed
+      //metodos das conversões
+        public void DecimalBinario(){
+          if(boxEntrada.getSelectedIndex()== 1 && boxSaida.getSelectedIndex()==0){
          
         int valor = Integer.parseInt(textEntrada.getText());
              String saida = "";
@@ -137,10 +142,21 @@ if(boxEntrada.getSelectedIndex()== 1 && boxSaida.getSelectedIndex()==0){
             valor = valor /2;
          }
          textSaida.setText(saida);
-        }    
-     
-    }//GEN-LAST:event_converterActionPerformed
-        
+        } 
+      }
+      
+      public void BinarioDecimal(){
+          if(boxEntrada.getSelectedIndex()==0 && boxSaida.getSelectedIndex()==1){
+              String entrada = textEntrada.getText();
+              int S=0;
+              for(int i =0;i<entrada.length();i++){
+                  int v = Character.getNumericValue(entrada.charAt(i));
+                  S+=v*Math.pow(2, entrada.length()-i-1);
+              }
+              textSaida.setText(String.valueOf(S));
+          }
+      }
+      
     /**
      * @param args the command line arguments
      */
