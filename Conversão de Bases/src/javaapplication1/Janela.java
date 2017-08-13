@@ -128,6 +128,8 @@ public class Janela extends javax.swing.JDialog {
         // TODO add your handling code here:
         DecimalBinario();
         BinarioDecimal();
+        HexadecimalDecimal();
+        DecimalHexadecimal();
      
     }//GEN-LAST:event_converterActionPerformed
       //metodos das conversões
@@ -144,7 +146,33 @@ public class Janela extends javax.swing.JDialog {
          textSaida.setText(saida);
         } 
       }
-      
+       public void DecimalHexadecimal(){
+          if(boxEntrada.getSelectedIndex()==1 && boxSaida.getSelectedIndex()==2){
+              int valor = Integer.parseInt(textEntrada.getText());
+              String saida = "";
+              if(valor==10){
+                  saida="A";         
+              }if(valor==11){
+                  saida="B";
+              }if(valor==12){
+                  saida="C";
+              }if(valor==13){
+                  saida="D";
+              }if(valor==14){
+                  saida="E";
+              }if(valor==15){
+                  saida="F";
+              }
+              
+           
+            while(valor>=1){
+            int r = valor % 16 ;
+            saida = r + saida;
+            valor = valor /16;
+         }
+              textSaida.setText(saida);
+          }
+      }
       public void BinarioDecimal(){
           if(boxEntrada.getSelectedIndex()==0 && boxSaida.getSelectedIndex()==1){
               String entrada = textEntrada.getText();
@@ -156,7 +184,18 @@ public class Janela extends javax.swing.JDialog {
               textSaida.setText(String.valueOf(S));
           }
       }
-      
+      public void HexadecimalDecimal(){
+          if(boxEntrada.getSelectedIndex()==2 && boxSaida.getSelectedIndex()==1){
+              String entrada= textEntrada.getText();
+              int S=0;
+              for(int i=0;i<entrada.length();i++){
+                  int v = Character.getNumericValue(entrada.charAt(i));
+                  S+=v*Math.pow(16,entrada.length()-i-1);
+              }
+              textSaida.setText(String.valueOf(S));
+          }
+      }
+     
     /**
      * @param args the command line arguments
      */
