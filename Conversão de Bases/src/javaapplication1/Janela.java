@@ -130,7 +130,8 @@ public class Janela extends javax.swing.JDialog {
         BinarioDecimal();
         HexadecimalDecimal();
         DecimalHexadecimal();
-     
+        BinarioHexadecimal();
+        HexadecimalBinario();
     }//GEN-LAST:event_converterActionPerformed
       //metodos das conversões
         public void DecimalBinario(){
@@ -164,12 +165,12 @@ public class Janela extends javax.swing.JDialog {
                   saida="F";
               }
               
-           
+           if(valor<10 || valor>15){
             while(valor>=1){
             int r = valor % 16 ;
             saida = r + saida;
             valor = valor /16;
-         }
+         }}
               textSaida.setText(saida);
           }
       }
@@ -195,8 +196,76 @@ public class Janela extends javax.swing.JDialog {
               textSaida.setText(String.valueOf(S));
           }
       }
-     
-    /**
+      public void BinarioHexadecimal(){
+         if(boxEntrada.getSelectedIndex()==0 && boxSaida.getSelectedIndex()==2){
+             String entrada= textEntrada.getText();
+             int Resultado=0;
+             for(int i=0;i<entrada.length();i++){
+                 int v = Character.getNumericValue(entrada.charAt(i));
+                 Resultado+=v*Math.pow(2, entrada.length()-i-1);
+             }
+         
+             String saida = "";
+              if(Resultado==10){
+                  saida="A";         
+              }if(Resultado==11){
+                  saida="B";
+              }if(Resultado==12){
+                  saida="C";
+              }if(Resultado==13){
+                  saida="D";
+              }if(Resultado==14){
+                  saida="E";
+              }if(Resultado==15){
+                  saida="F";
+              }
+              
+           if(Resultado<10 || Resultado>15){
+            while(Resultado>=1){
+            int r = Resultado % 16 ;
+            saida = r + saida;
+            Resultado = Resultado /16;
+             
+         }}
+            textSaida.setText(saida);
+     }
+     }
+      public void HexadecimalBinario(){
+          if(boxEntrada.getSelectedIndex()==2 && boxSaida.getSelectedIndex()==0){
+             int Resultado2=0;
+              
+              String entrada= textEntrada.getText();
+              int S=0;
+              for(int i=0;i<entrada.length();i++){
+                  int v = Character.getNumericValue(entrada.charAt(i));
+                  S+=v*Math.pow(16,entrada.length()-i-1);
+              }
+              String saida = "";
+              if(S==10){
+                  saida="1010";         
+              }if(S==11){
+                  saida="1011";
+              }if(S==12){
+                  saida="1100";
+              }if(S==13){
+                  saida="1101";
+              }if(S==14){
+                  saida="1110";
+              }if(S==15){
+                  saida="1111";
+              }
+            
+            if(S<10||S>15){ 
+            while(S>=1){
+            int r = S % 2 ;
+            saida = r + saida;
+            S = S /2;
+         }}
+         textSaida.setText(saida);
+            
+          }
+      }
+      /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -249,4 +318,8 @@ public class Janela extends javax.swing.JDialog {
     private javax.swing.JTextField textEntrada;
     private javax.swing.JTextField textSaida;
     // End of variables declaration//GEN-END:variables
+
+    private int IntegerparseInt(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
